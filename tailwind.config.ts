@@ -63,22 +63,23 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom dashboard colors
+				// Apple-inspired dashboard colors
 				dashboard: {
-					bg: '#F8F9FA',
+					bg: '#f5f5f7',
 					card: '#FFFFFF',
-					green: '#4CAF50',
-					red: '#F44336',
-					blue: '#2196F3',
-					yellow: '#FFC107',
-					purple: '#9C27B0',
-					'text-primary': '#3A3A3A',
-					'text-secondary': '#6E6E6E',
+					green: '#34c759',
+					red: '#ff3b30',
+					blue: '#007aff',
+					yellow: '#ffcc00',
+					purple: '#af52de',
+					'text-primary': '#1d1d1f',
+					'text-secondary': '#86868b',
 				}
 			},
 			fontFamily: {
-				'sketch': ['"Architects Daughter"', 'cursive'],
-				'hand': ['"Caveat"', 'cursive'],
+				'sf': ['"SF Pro Display"', '"SF Pro Text"', 'Inter', '-apple-system', 'sans-serif'],
+				'display': ['"SF Pro Display"', 'Inter', '-apple-system', 'sans-serif'],
+				'sans': ['"SF Pro Text"', 'Inter', '-apple-system', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -99,7 +100,7 @@ export default {
 					'100%': { opacity: '1', transform: 'translateY(0)' }
 				},
 				'scale-in': {
-					'0%': { transform: 'scale(0.95)', opacity: '0' },
+					'0%': { transform: 'scale(0.97)', opacity: '0' },
 					'100%': { transform: 'scale(1)', opacity: '1' }
 				},
 				'slide-in': {
@@ -108,7 +109,7 @@ export default {
 				},
 				'pulse-subtle': {
 					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '0.8' }
+					'50%': { opacity: '0.95' }
 				},
 				'draw-line': {
 					'0%': { 'stroke-dashoffset': '1000' },
@@ -122,8 +123,8 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.5s ease-out',
-				'scale-in': 'scale-in 0.3s ease-out',
+				'fade-in': 'fade-in 0.4s ease-out',
+				'scale-in': 'scale-in 0.2s ease-out',
 				'slide-in': 'slide-in 0.3s ease-out',
 				'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
 				'draw-line': 'draw-line 1.5s ease-out forwards',
@@ -133,3 +134,4 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+

@@ -46,35 +46,35 @@ const ScoreAnalysis = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'detail'>('overview');
 
   return (
-    <div className="card-sketch animate-fade-in">
-      <h2 className="text-xl font-hand font-semibold mb-4 flex items-center gap-2">
-        <BarChart2 size={18} className="text-blue-600" />
-        <span className="sketch-highlight">Score Analysis</span>
+    <div className="card-apple animate-fade-in">
+      <h2 className="text-xl font-display font-medium mb-4 flex items-center gap-2">
+        <BarChart2 size={18} className="text-dashboard-blue" />
+        <span className="apple-highlight">Score Analysis</span>
       </h2>
       
-      <div className="flex space-x-4 mb-5 border-b border-gray-200">
+      <div className="flex space-x-4 mb-5 border-b border-gray-200/60">
         <button
           className={cn(
-            "pb-2 font-sketch text-gray-500 transition-colors relative",
-            activeTab === 'overview' && "text-blue-600 font-medium"
+            "pb-2 font-sans text-gray-500 transition-colors relative",
+            activeTab === 'overview' && "text-dashboard-blue font-medium"
           )}
           onClick={() => setActiveTab('overview')}
         >
           Overview
           {activeTab === 'overview' && (
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-dashboard-blue rounded-full"></span>
           )}
         </button>
         <button
           className={cn(
-            "pb-2 font-sketch text-gray-500 transition-colors relative",
-            activeTab === 'detail' && "text-blue-600 font-medium"
+            "pb-2 font-sans text-gray-500 transition-colors relative",
+            activeTab === 'detail' && "text-dashboard-blue font-medium"
           )}
           onClick={() => setActiveTab('detail')}
         >
           Detailed Analysis
           {activeTab === 'detail' && (
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-dashboard-blue rounded-full"></span>
           )}
         </button>
       </div>
@@ -84,19 +84,19 @@ const ScoreAnalysis = () => {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 20, right: 30, left: 5, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="name" tickLine={false} axisLine={{ stroke: "#e0e0e0" }} tick={{ fontFamily: "Architects Daughter", fontSize: 12 }} />
-              <YAxis tickLine={false} axisLine={{ stroke: "#e0e0e0" }} tick={{ fontFamily: "Architects Daughter", fontSize: 12 }} />
+              <XAxis dataKey="name" tickLine={false} axisLine={{ stroke: "#e0e0e0" }} tick={{ fontFamily: "SF Pro Text", fontSize: 12 }} />
+              <YAxis tickLine={false} axisLine={{ stroke: "#e0e0e0" }} tick={{ fontFamily: "SF Pro Text", fontSize: 12 }} />
               <Tooltip 
                 contentStyle={{ 
-                  fontFamily: "Architects Daughter", 
+                  fontFamily: "SF Pro Text", 
                   borderRadius: "8px", 
                   boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                   border: "1px solid #eaeaea"
                 }} 
               />
-              <Bar dataKey="Mathematics" fill="#3B82F6" radius={[4, 4, 0, 0]} animationDuration={1500} />
-              <Bar dataKey="Science" fill="#10B981" radius={[4, 4, 0, 0]} animationDuration={1500} />
-              <Bar dataKey="English" fill="#8B5CF6" radius={[4, 4, 0, 0]} animationDuration={1500} />
+              <Bar dataKey="Mathematics" fill="#007aff" radius={[4, 4, 0, 0]} animationDuration={1500} />
+              <Bar dataKey="Science" fill="#34c759" radius={[4, 4, 0, 0]} animationDuration={1500} />
+              <Bar dataKey="English" fill="#af52de" radius={[4, 4, 0, 0]} animationDuration={1500} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -112,10 +112,10 @@ const ScoreAnalysis = () => {
               />
               
               <div className="mt-3">
-                <div className="text-sm font-medium mb-1 font-sketch">Strength Analysis</div>
+                <div className="text-sm font-medium mb-1 font-sans">Strength Analysis</div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <h4 className="text-xs uppercase text-gray-500 mb-1 font-sketch">Weak Areas</h4>
+                    <h4 className="text-xs uppercase text-gray-500 mb-1 font-sans">Weak Areas</h4>
                     <div className="space-y-2">
                       {subjectData.weakAreas.map((area) => (
                         <HeatmapCell key={area} label={area} score={30 + Math.random() * 30} type="weak" />
@@ -123,7 +123,7 @@ const ScoreAnalysis = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-xs uppercase text-gray-500 mb-1 font-sketch">Strong Areas</h4>
+                    <h4 className="text-xs uppercase text-gray-500 mb-1 font-sans">Strong Areas</h4>
                     <div className="space-y-2">
                       {subjectData.strongAreas.map((area) => (
                         <HeatmapCell key={area} label={area} score={70 + Math.random() * 30} type="strong" />
@@ -151,11 +151,11 @@ const HeatmapCell = ({ label, score, type }: HeatmapCellProps) => {
   
   const getColor = () => {
     if (type === 'weak') {
-      if (score < 40) return 'bg-red-600';
-      if (score < 50) return 'bg-red-500';
-      return 'bg-red-400';
+      if (score < 40) return 'bg-dashboard-red';
+      if (score < 50) return 'bg-red-400';
+      return 'bg-red-300';
     } else {
-      if (score > 90) return 'bg-green-600';
+      if (score > 90) return 'bg-dashboard-green';
       if (score > 80) return 'bg-green-500';
       return 'bg-green-400';
     }
@@ -168,10 +168,10 @@ const HeatmapCell = ({ label, score, type }: HeatmapCellProps) => {
       onMouseLeave={() => setHover(false)}
     >
       <div className={cn(
-        "w-full h-7 relative rounded flex items-center px-2 transition-all duration-300",
+        "w-full h-7 relative rounded-lg flex items-center px-2 transition-all duration-300",
         getColor()
       )}>
-        <span className="text-xs text-white font-medium z-10 font-sketch">{label}</span>
+        <span className="text-xs text-white font-medium z-10 font-sans">{label}</span>
         
         {hover && (
           <div className="absolute right-2 text-white text-xs font-medium z-10 flex items-center gap-1 animate-fade-in">

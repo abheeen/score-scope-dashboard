@@ -28,10 +28,10 @@ const CgpaDisplay = () => {
   }, []);
   
   return (
-    <div className="card-sketch animate-fade-in">
-      <h2 className="text-xl font-hand font-semibold mb-4 flex items-center gap-2">
-        <Award size={18} className="text-blue-600" />
-        <span className="sketch-highlight">CGPA</span>
+    <div className="card-apple animate-fade-in">
+      <h2 className="text-xl font-display font-medium mb-4 flex items-center gap-2">
+        <Award size={18} className="text-dashboard-blue" />
+        <span className="apple-highlight">CGPA</span>
       </h2>
       
       <div className="flex flex-col items-center justify-center p-2">
@@ -42,7 +42,7 @@ const CgpaDisplay = () => {
               cy="50"
               r="45"
               fill="none"
-              stroke="#edf2f7"
+              stroke="#f5f5f7"
               strokeWidth="8"
             />
             <circle
@@ -50,7 +50,7 @@ const CgpaDisplay = () => {
               cy="50"
               r="45"
               fill="none"
-              stroke="#4299e1"
+              stroke="#007aff"
               strokeWidth="8"
               strokeDasharray="283"
               strokeDashoffset={283 - (283 * (cgpa / 4))}
@@ -60,23 +60,23 @@ const CgpaDisplay = () => {
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-3xl font-bold font-hand">{cgpa.toFixed(2)}</span>
-            <span className="text-sm text-gray-500 font-sketch">of 4.00</span>
+            <span className="text-3xl font-bold font-display">{cgpa.toFixed(2)}</span>
+            <span className="text-sm text-dashboard-text-secondary font-sans">of 4.00</span>
           </div>
         </div>
         
         <div className="w-full mt-3 grid grid-cols-4 gap-2">
           {[
-            { label: "A", value: "12", color: "bg-green-500" },
-            { label: "B", value: "5", color: "bg-blue-500" },
-            { label: "C", value: "1", color: "bg-yellow-500" },
-            { label: "F", value: "0", color: "bg-red-500" },
+            { label: "A", value: "12", color: "bg-dashboard-green" },
+            { label: "B", value: "5", color: "bg-dashboard-blue" },
+            { label: "C", value: "1", color: "bg-dashboard-yellow" },
+            { label: "F", value: "0", color: "bg-dashboard-red" },
           ].map((item) => (
             <div key={item.label} className="flex flex-col items-center">
               <div className={`w-6 h-6 rounded-full ${item.color} flex items-center justify-center text-white text-xs font-medium mb-1`}>
                 {item.label}
               </div>
-              <span className="text-sm font-sketch">{item.value}</span>
+              <span className="text-sm font-sans">{item.value}</span>
             </div>
           ))}
         </div>

@@ -16,21 +16,20 @@ const TimePeriodSelector = () => {
   const [selected, setSelected] = useState(semesters[0]);
 
   return (
-    <div className="relative card-sketch min-w-[250px] animate-fade-in">
+    <div className="relative card-apple min-w-[250px] animate-fade-in">
       <div className="flex items-center gap-2 mb-2">
-        <Calendar size={18} className="text-blue-600" />
-        <h3 className="font-hand text-lg font-medium">Time Period</h3>
+        <Calendar size={18} className="text-dashboard-blue" />
+        <h3 className="font-display text-lg font-medium">Time Period</h3>
       </div>
       
       <div
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "mt-2 relative flex items-center justify-between px-4 py-2.5 border border-gray-200 rounded-lg",
-          "cursor-pointer transition-all duration-200 hover:border-gray-300",
-          "hand-drawn-border"
+          "mt-2 relative flex items-center justify-between px-4 py-2.5 border border-gray-200/70 rounded-lg bg-white/80 backdrop-blur-sm",
+          "cursor-pointer transition-all duration-200 hover:border-gray-300"
         )}
       >
-        <span className="font-sketch">{selected}</span>
+        <span className="font-sans">{selected}</span>
         <ChevronDown
           size={16}
           className={cn(
@@ -41,13 +40,13 @@ const TimePeriodSelector = () => {
       </div>
       
       {isOpen && (
-        <div className="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-10 py-1 animate-scale-in">
+        <div className="absolute left-0 right-0 mt-1 bg-white/90 backdrop-blur-sm border border-gray-200/70 rounded-lg shadow-lg z-10 py-1 animate-scale-in">
           {semesters.map((semester) => (
             <div
               key={semester}
               className={cn(
-                "px-4 py-2 cursor-pointer hover:bg-gray-50 transition-colors font-sketch",
-                semester === selected && "bg-blue-50 text-blue-600"
+                "px-4 py-2 cursor-pointer hover:bg-gray-50/80 transition-colors font-sans",
+                semester === selected && "bg-blue-50/80 text-dashboard-blue"
               )}
               onClick={() => {
                 setSelected(semester);

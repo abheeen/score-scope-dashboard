@@ -12,10 +12,10 @@ interface MetricProps {
 
 const OverallPerformance = () => {
   return (
-    <div className="card-sketch animate-fade-in">
-      <h2 className="text-xl font-hand font-semibold mb-4 flex items-center gap-2">
-        <TrendingUp size={18} className="text-blue-600" />
-        <span className="sketch-highlight">Overall Performance</span>
+    <div className="card-apple animate-fade-in">
+      <h2 className="text-xl font-display font-medium mb-4 flex items-center gap-2">
+        <TrendingUp size={18} className="text-dashboard-blue" />
+        <span className="apple-highlight">Overall Performance</span>
       </h2>
       
       <div className="grid grid-cols-1 gap-6 mt-4">
@@ -24,7 +24,7 @@ const OverallPerformance = () => {
           value="78.3%" 
           change="+5.2%" 
           positive={true}
-          icon={<BarChart2 size={18} className="text-blue-600" />}
+          icon={<BarChart2 size={18} className="text-dashboard-blue" />}
         />
         
         <Metric 
@@ -32,17 +32,17 @@ const OverallPerformance = () => {
           value="92%" 
           change="+2.4%" 
           positive={true} 
-          icon={<div className="w-4 h-4 rounded-full bg-green-500"></div>}
+          icon={<div className="w-4 h-4 rounded-full bg-dashboard-green"></div>}
         />
         
         <div className="mt-2">
           <div className="flex justify-between items-center text-sm mb-1">
-            <span className="text-gray-600 font-sketch">Overall Progress</span>
-            <span className="font-medium font-sketch">75%</span>
+            <span className="text-dashboard-text-secondary font-sans">Overall Progress</span>
+            <span className="font-medium font-sans">75%</span>
           </div>
-          <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden relative">
+          <div className="h-2.5 w-full bg-gray-100 rounded-full overflow-hidden relative">
             <div 
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full animate-pulse-subtle"
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-dashboard-blue to-dashboard-blue/80 rounded-full animate-pulse-subtle"
               style={{ width: '75%' }}
             ></div>
           </div>
@@ -57,14 +57,14 @@ const Metric = ({ label, value, change, positive, icon }: MetricProps) => {
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2.5">
         {icon}
-        <span className="text-gray-600 font-sketch">{label}</span>
+        <span className="text-dashboard-text-secondary font-sans">{label}</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="font-medium font-hand text-lg">{value}</span>
+        <span className="font-medium font-display text-lg">{value}</span>
         {change && (
           <span className={cn(
-            "text-xs px-1.5 py-0.5 rounded font-sketch",
-            positive ? "text-green-700 bg-green-100" : "text-red-700 bg-red-100",
+            "text-xs px-1.5 py-0.5 rounded-full font-sans",
+            positive ? "text-dashboard-green bg-green-50" : "text-dashboard-red bg-red-50",
           )}>
             {change}
           </span>

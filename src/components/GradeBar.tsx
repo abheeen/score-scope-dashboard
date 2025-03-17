@@ -37,24 +37,24 @@ const GradeBar = ({ subject, score, maxScore = 100, color = "blue" }: GradeBarPr
   }, [score, maxScore]);
   
   const colorClasses = {
-    blue: "bg-blue-500",
-    green: "bg-green-500",
-    yellow: "bg-yellow-500",
-    red: "bg-red-500",
-    purple: "bg-purple-500",
+    blue: "bg-dashboard-blue",
+    green: "bg-dashboard-green",
+    yellow: "bg-dashboard-yellow",
+    red: "bg-dashboard-red",
+    purple: "bg-dashboard-purple",
   };
   
   return (
     <div className="mb-3 last:mb-0" ref={barRef}>
       <div className="flex justify-between items-center mb-1">
-        <span className="text-sm font-sketch">{subject}</span>
-        <span className="text-sm font-medium font-hand">{score}%</span>
+        <span className="text-sm font-sans">{subject}</span>
+        <span className="text-sm font-medium font-display">{score}%</span>
       </div>
-      <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+      <div className="h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
         <div 
           className={cn(
             "h-full rounded-full transition-all duration-1000 ease-out",
-            colorClasses[color as keyof typeof colorClasses] || "bg-blue-500"
+            colorClasses[color as keyof typeof colorClasses] || "bg-dashboard-blue"
           )}
           style={{ width: `${width}%` }}
         ></div>
