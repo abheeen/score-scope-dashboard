@@ -1,0 +1,187 @@
+
+import { useState, useEffect } from "react";
+import { BarChart2, Activity } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { cn } from "@/lib/utils";
+import GradeBar from "./GradeBar";
+
+interface SubjectScore {
+  subject: string;
+  score: number;
+  weakAreas: string[];
+  strongAreas: string[];
+}
+
+const data = [
+  { name: 'Test 1', Mathematics: 65, Science: 75, English: 80 },
+  { name: 'Test 2', Mathematics: 70, Science: 82, English: 75 },
+  { name: 'Quiz 1', Mathematics: 55, Science: 78, English: 90 },
+  { name: 'Mid-term', Mathematics: 68, Science: 90, English: 85 },
+  { name: 'Quiz 2', Mathematics: 75, Science: 85, English: 82 },
+  { name: 'Final', Mathematics: 72, Science: 92, English: 88 },
+];
+
+const subjectScores: SubjectScore[] = [
+  {
+    subject: "Mathematics",
+    score: 68,
+    weakAreas: ["Calculus", "Trigonometry"],
+    strongAreas: ["Algebra", "Statistics"]
+  },
+  {
+    subject: "Science",
+    score: 85,
+    weakAreas: ["Physics formulas"],
+    strongAreas: ["Biology", "Chemistry", "Lab work"]
+  },
+  {
+    subject: "English",
+    score: 83,
+    weakAreas: ["Grammar"],
+    strongAreas: ["Comprehension", "Writing", "Literature"]
+  }
+];
+
+const ScoreAnalysis = () => {
+  const [activeTab, setActiveTab] = useState<'overview' | 'detail'>('overview');
+
+  return (
+    <div className="card-sketch animate-fade-in">
+      <h2 className="text-xl font-hand font-semibold mb-4 flex items-center gap-2">
+        <BarChart2 size={18} className="text-blue-600" />
+        <span className="sketch-highlight">Score Analysis</span>
+      </h2>
+      
+      <div className="flex space-x-4 mb-5 border-b border-gray-200">
+        <button
+          className={cn(
+            "pb-2 font-sketch text-gray-500 transition-colors relative",
+            activeTab === 'overview' && "text-blue-600 font-medium"
+          )}
+          onClick={() => setActiveTab('overview')}
+        >
+          Overview
+          {activeTab === 'overview' && (
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full"></span>
+          )}
+        </button>
+        <button
+          className={cn(
+            "pb-2 font-sketch text-gray-500 transition-colors relative",
+            activeTab === 'detail' && "text-blue-600 font-medium"
+          )}
+          onClick={() => setActiveTab('detail')}
+        >
+          Detailed Analysis
+          {activeTab === 'detail' && (
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full"></span>
+          )}
+        </button>
+      </div>
+      
+      {activeTab === 'overview' ? (
+        <div className="mt-4 h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data} margin={{ top: 20, right: 30, left: 5, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="name" tickLine={false} axisLine={{ stroke: "#e0e0e0" }} tick={{ fontFamily: "Architects Daughter", fontSize: 12 }} />
+              <YAxis tickLine={false} axisLine={{ stroke: "#e0e0e0" }} tick={{ fontFamily: "Architects Daughter", fontSize: 12 }} />
+              <Tooltip 
+                contentStyle={{ 
+                  fontFamily: "Architects Daughter", 
+                  borderRadius: "8px", 
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                  border: "1px solid #eaeaea"
+                }} 
+              />
+              <Bar dataKey="Mathematics" fill="#3B82F6" radius={[4, 4, 0, 0]} animationDuration={1500} />
+              <Bar dataKey="Science" fill="#10B981" radius={[4, 4, 0, 0]} animationDuration={1500} />
+              <Bar dataKey="English" fill="#8B5CF6" radius={[4, 4, 0, 0]} animationDuration={1500} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      ) : (
+        <div className="mt-3 space-y-6">
+          {subjectScores.map((subjectData) => (
+            <div key={subjectData.subject} className="pb-5 mb-2 last:mb-0 last:pb-0">
+              <GradeBar 
+                subject={subjectData.subject} 
+                score={subjectData.score} 
+                color={subjectData.subject === "Mathematics" ? "blue" : 
+                      subjectData.subject === "Science" ? "green" : "purple"} 
+              />
+              
+              <div className="mt-3">
+                <div className="text-sm font-medium mb-1 font-sketch">Strength Analysis</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <h4 className="text-xs uppercase text-gray-500 mb-1 font-sketch">Weak Areas</h4>
+                    <div className="space-y-2">
+                      {subjectData.weakAreas.map((area) => (
+                        <HeatmapCell key={area} label={area} score={30 + Math.random() * 30} type="weak" />
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xs uppercase text-gray-500 mb-1 font-sketch">Strong Areas</h4>
+                    <div className="space-y-2">
+                      {subjectData.strongAreas.map((area) => (
+                        <HeatmapCell key={area} label={area} score={70 + Math.random() * 30} type="strong" />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface HeatmapCellProps {
+  label: string;
+  score: number;
+  type: 'weak' | 'strong';
+}
+
+const HeatmapCell = ({ label, score, type }: HeatmapCellProps) => {
+  const [hover, setHover] = useState(false);
+  
+  const getColor = () => {
+    if (type === 'weak') {
+      if (score < 40) return 'bg-red-600';
+      if (score < 50) return 'bg-red-500';
+      return 'bg-red-400';
+    } else {
+      if (score > 90) return 'bg-green-600';
+      if (score > 80) return 'bg-green-500';
+      return 'bg-green-400';
+    }
+  };
+  
+  return (
+    <div 
+      className="flex items-center gap-2 p-1 rounded-md heatmap-cell"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <div className={cn(
+        "w-full h-7 relative rounded flex items-center px-2 transition-all duration-300",
+        getColor()
+      )}>
+        <span className="text-xs text-white font-medium z-10 font-sketch">{label}</span>
+        
+        {hover && (
+          <div className="absolute right-2 text-white text-xs font-medium z-10 flex items-center gap-1 animate-fade-in">
+            <Activity size={14} />
+            <span>{Math.round(score)}%</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ScoreAnalysis;
