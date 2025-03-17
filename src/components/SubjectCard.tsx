@@ -13,19 +13,19 @@ const SubjectCard = ({ subject, score, semester, className }: SubjectCardProps) 
   const getSubjectIcon = (subject: string) => {
     switch (subject.toLowerCase()) {
       case "mathematics":
-        return <div className="w-6 h-6 flex items-center justify-center text-white bg-dashboard-blue rounded-full">∑</div>;
+        return <div className="w-6 h-6 flex items-center justify-center text-white bg-dashboard-blue dark:bg-dashboard-blue-dark rounded-full">∑</div>;
       case "science":
         return <Atom className="text-dashboard-green" />;
       case "english":
         return <Languages className="text-dashboard-purple" />;
       default:
-        return <Book className="text-dashboard-blue" />;
+        return <Book className="text-dashboard-blue dark:text-dashboard-blue-dark" />;
     }
   };
   
   const getScoreColor = (score: number) => {
     if (score >= 90) return "text-dashboard-green";
-    if (score >= 70) return "text-dashboard-blue";
+    if (score >= 70) return "text-dashboard-blue dark:text-dashboard-blue-dark";
     if (score >= 50) return "text-dashboard-yellow";
     return "text-dashboard-red";
   };
@@ -33,7 +33,7 @@ const SubjectCard = ({ subject, score, semester, className }: SubjectCardProps) 
   return (
     <div 
       className={cn(
-        "rounded-xl border border-gray-100/60 bg-white/80 backdrop-blur-sm p-4 transition-all duration-300 shadow-sm hover:shadow-md group hover:translate-y-[-2px] animate-fade-in",
+        "rounded-xl border border-gray-100/60 dark:border-gray-800/30 bg-white/80 dark:bg-dashboard-card-bg-dark backdrop-blur-sm p-4 transition-all duration-300 shadow-sm hover:shadow-md group hover:translate-y-[-2px] animate-fade-in",
         className
       )}
     >
@@ -49,7 +49,7 @@ const SubjectCard = ({ subject, score, semester, className }: SubjectCardProps) 
           {score}
         </div>
       </div>
-      <div className="text-sm text-dashboard-text-secondary font-sans mt-1">{semester}</div>
+      <div className="text-sm text-dashboard-text-secondary dark:text-dashboard-text-secondary-dark font-sans mt-1">{semester}</div>
     </div>
   );
 };

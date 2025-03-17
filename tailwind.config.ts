@@ -63,17 +63,24 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Apple-inspired dashboard colors
+				// Apple-inspired dashboard colors with dark mode support
 				dashboard: {
 					bg: '#f5f5f7',
+					'bg-dark': '#1A1F2C',
 					card: '#FFFFFF',
+					'card-dark': '#222222',
 					green: '#34c759',
 					red: '#ff3b30',
 					blue: '#007aff',
+					'blue-dark': '#0A84FF',
 					yellow: '#ffcc00',
 					purple: '#af52de',
 					'text-primary': '#1d1d1f',
+					'text-primary-dark': '#f5f5f7',
 					'text-secondary': '#86868b',
+					'text-secondary-dark': '#98989d',
+					'card-border': 'rgba(255, 255, 255, 0.1)',
+					'card-bg-dark': 'rgba(30, 30, 35, 0.7)',
 				}
 			},
 			fontFamily: {
@@ -134,4 +141,3 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-

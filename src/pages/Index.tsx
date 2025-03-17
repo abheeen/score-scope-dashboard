@@ -13,6 +13,12 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check system preference for dark mode
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    }
+    
     // Simulate loading data
     const timer = setTimeout(() => {
       setLoading(false);
@@ -23,17 +29,17 @@ const Index = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-lg font-sketch text-gray-600">Loading your dashboard...</p>
+          <div className="w-16 h-16 border-4 border-gray-200 dark:border-gray-700 border-t-blue-500 dark:border-t-blue-400 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-lg font-sf text-gray-600 dark:text-gray-300">Loading your dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex bg-dashboard-bg">
+    <div className="min-h-screen flex bg-dashboard-bg dark:bg-dashboard-bg-dark transition-colors duration-300">
       <SideNavigation />
       
       <main className="flex-1 overflow-auto">
@@ -42,8 +48,8 @@ const Index = () => {
           
           <div className="flex justify-between items-center mb-6">
             <div className="flex gap-3 items-center">
-              <h2 className="text-xl font-hand font-semibold">Academic Overview</h2>
-              <span className="text-sm text-gray-500 font-sketch">Spring 2023</span>
+              <h2 className="text-xl font-sf font-semibold">Academic Overview</h2>
+              <span className="text-sm text-gray-500 dark:text-gray-400 font-sf">Spring 2023</span>
             </div>
             
             <ExportButton />

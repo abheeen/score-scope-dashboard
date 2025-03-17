@@ -37,7 +37,7 @@ const GradeBar = ({ subject, score, maxScore = 100, color = "blue" }: GradeBarPr
   }, [score, maxScore]);
   
   const colorClasses = {
-    blue: "bg-dashboard-blue",
+    blue: "bg-dashboard-blue dark:bg-dashboard-blue-dark",
     green: "bg-dashboard-green",
     yellow: "bg-dashboard-yellow",
     red: "bg-dashboard-red",
@@ -50,11 +50,11 @@ const GradeBar = ({ subject, score, maxScore = 100, color = "blue" }: GradeBarPr
         <span className="text-sm font-sans">{subject}</span>
         <span className="text-sm font-medium font-display">{score}%</span>
       </div>
-      <div className="h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
+      <div className="h-2.5 w-full bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
         <div 
           className={cn(
             "h-full rounded-full transition-all duration-1000 ease-out",
-            colorClasses[color as keyof typeof colorClasses] || "bg-dashboard-blue"
+            colorClasses[color as keyof typeof colorClasses] || "bg-dashboard-blue dark:bg-dashboard-blue-dark"
           )}
           style={{ width: `${width}%` }}
         ></div>
