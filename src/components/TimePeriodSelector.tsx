@@ -16,7 +16,7 @@ const TimePeriodSelector = () => {
   const [selected, setSelected] = useState(semesters[0]);
 
   return (
-    <div className="relative card-apple min-w-[250px] animate-fade-in">
+    <div className="relative glass-card p-4 min-w-[250px] animate-fade-in">
       <div className="flex items-center gap-2 mb-2">
         <Calendar size={18} className="text-dashboard-blue dark:text-dashboard-blue-dark" />
         <h3 className="font-display text-lg font-medium">Time Period</h3>
@@ -25,8 +25,9 @@ const TimePeriodSelector = () => {
       <div
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "mt-2 relative flex items-center justify-between px-4 py-2.5 border border-gray-200/70 dark:border-gray-800/30 rounded-lg bg-white/80 dark:bg-black/20 backdrop-blur-sm",
-          "cursor-pointer transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-700"
+          "mt-2 relative flex items-center justify-between px-4 py-2.5 border border-gray-200/30 dark:border-gray-800/30 rounded-lg",
+          "backdrop-blur-sm bg-white/40 dark:bg-black/20",
+          "cursor-pointer transition-all duration-200 hover:border-gray-300/50 dark:hover:border-gray-700/50"
         )}
       >
         <span className="font-sans">{selected}</span>
@@ -40,12 +41,12 @@ const TimePeriodSelector = () => {
       </div>
       
       {isOpen && (
-        <div className="absolute left-0 right-0 mt-1 bg-white/90 dark:bg-dashboard-card-bg-dark backdrop-blur-sm border border-gray-200/70 dark:border-gray-800/30 rounded-lg shadow-lg z-10 py-1 animate-scale-in">
+        <div className="absolute left-0 right-0 mt-1 backdrop-blur-md bg-white/80 dark:bg-[#222739]/80 border border-gray-200/30 dark:border-gray-800/30 rounded-lg shadow-lg z-10 py-1 animate-scale-in">
           {semesters.map((semester) => (
             <div
               key={semester}
               className={cn(
-                "px-4 py-2 cursor-pointer hover:bg-gray-50/80 dark:hover:bg-gray-800/50 transition-colors font-sans",
+                "px-4 py-2 cursor-pointer hover:bg-gray-50/80 dark:hover:bg-gray-800/30 transition-colors font-sans",
                 semester === selected && "bg-blue-50/80 dark:bg-blue-900/20 text-dashboard-blue dark:text-dashboard-blue-dark"
               )}
               onClick={() => {

@@ -29,8 +29,8 @@ const Index = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        <div className="text-center">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-100 dark:from-[#1A1F2C] dark:to-[#141925] transition-colors duration-300">
+        <div className="text-center glass-card p-8">
           <div className="w-16 h-16 border-4 border-gray-200 dark:border-gray-700 border-t-blue-500 dark:border-t-blue-400 rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-lg font-sf text-gray-600 dark:text-gray-300">Loading your dashboard...</p>
         </div>
@@ -39,7 +39,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen flex bg-dashboard-bg dark:bg-dashboard-bg-dark transition-colors duration-300">
+    <div className="min-h-screen flex bg-gradient-to-b from-white to-gray-100 dark:from-[#1A1F2C] dark:to-[#141925] transition-colors duration-300">
       <SideNavigation />
       
       <main className="flex-1 overflow-auto">
