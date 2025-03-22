@@ -33,7 +33,7 @@ const SubjectCard = ({ subject, score, semester, className }: SubjectCardProps) 
   return (
     <div 
       className={cn(
-        "glass-card p-4 backdrop-blur-md hover:shadow-md group hover:translate-y-[-2px] animate-fade-in",
+        "rounded-xl border border-gray-100/60 dark:border-gray-800/30 bg-white/80 dark:bg-dashboard-card-bg-dark backdrop-blur-sm p-4 transition-all duration-300 shadow-sm hover:shadow-md group hover:translate-y-[-2px] animate-fade-in",
         className
       )}
     >
