@@ -23,7 +23,11 @@ const Login = () => {
       toast.error("Please fill in all fields");
       return;
     }
-    // For demo purposes, just navigate to dashboard
+    
+    // Store role in localStorage for persistence
+    localStorage.setItem("userRole", selectedRole);
+    
+    // For demo purposes, navigate to dashboard
     toast.success(`Logged in as ${selectedRole}`);
     navigate("/");
   };
