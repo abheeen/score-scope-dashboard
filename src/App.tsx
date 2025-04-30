@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import NotFound from "./pages/NotFound";
+import { MarksProvider } from "./contexts/MarksContext";
 
 const queryClient = new QueryClient();
 
@@ -40,15 +41,17 @@ const RoleBasedRoute = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<RoleBasedRoute />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <MarksProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<RoleBasedRoute />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </MarksProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -1,9 +1,13 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BarChart2, Activity } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { cn } from "@/lib/utils";
 import GradeBar from "./GradeBar";
+import { useMarks } from "@/contexts/MarksContext";
+
+// For demo purposes, using student ID 1 as the logged-in student
+const CURRENT_STUDENT_ID = 1;
 
 interface SubjectScore {
   subject: string;
@@ -12,7 +16,8 @@ interface SubjectScore {
   strongAreas: string[];
 }
 
-const data = [
+// Fixed test data that won't change
+const testData = [
   { name: 'Test 1', Mathematics: 65, Science: 75, English: 80 },
   { name: 'Test 2', Mathematics: 70, Science: 82, English: 75 },
   { name: 'Quiz 1', Mathematics: 55, Science: 78, English: 90 },
@@ -21,29 +26,49 @@ const data = [
   { name: 'Final', Mathematics: 72, Science: 92, English: 88 },
 ];
 
-const subjectScores: SubjectScore[] = [
-  {
-    subject: "Mathematics",
-    score: 68,
+// Fixed areas data
+const subjectAreaDetails = {
+  "Mathematics": {
     weakAreas: ["Calculus", "Trigonometry"],
     strongAreas: ["Algebra", "Statistics"]
   },
-  {
-    subject: "Science",
-    score: 85,
+  "Science": {
     weakAreas: ["Physics formulas"],
     strongAreas: ["Biology", "Chemistry", "Lab work"]
   },
-  {
-    subject: "English",
-    score: 83,
+  "English": {
     weakAreas: ["Grammar"],
     strongAreas: ["Comprehension", "Writing", "Literature"]
+  },
+  "History": {
+    weakAreas: ["Modern History", "Dates"],
+    strongAreas: ["Ancient Civilizations", "Cultural Studies"]
+  },
+  "Computer Science": {
+    weakAreas: ["Advanced Algorithms"],
+    strongAreas: ["Programming", "Database Design", "Web Development"]
   }
-];
+};
 
 const ScoreAnalysis = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'detail'>('overview');
+  const { marks } = useMarks();
+  const [subjectScores, setSubjectScores] = useState<SubjectScore[]>([]);
+
+  useEffect(() => {
+    const studentData = marks.find(student => student.studentId === CURRENT_STUDENT_ID);
+    
+    if (studentData) {
+      const scoreData = Object.entries(studentData.subjects).map(([subject, data]: [string, any]) => ({
+        subject,
+        score: data.score,
+        weakAreas: subjectAreaDetails[subject as keyof typeof subjectAreaDetails]?.weakAreas || [],
+        strongAreas: subjectAreaDetails[subject as keyof typeof subjectAreaDetails]?.strongAreas || []
+      }));
+      
+      setSubjectScores(scoreData);
+    }
+  }, [marks]);
 
   return (
     <div className="card-apple animate-fade-in">
@@ -82,7 +107,7 @@ const ScoreAnalysis = () => {
       {activeTab === 'overview' ? (
         <div className="mt-4 h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data} margin={{ top: 20, right: 30, left: 5, bottom: 5 }}>
+            <BarChart data={testData} margin={{ top: 20, right: 30, left: 5, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" className="dark:stroke-gray-800/50" />
               <XAxis 
                 dataKey="name" 
