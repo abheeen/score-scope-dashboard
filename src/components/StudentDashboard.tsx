@@ -56,7 +56,6 @@ const StudentDashboard = () => {
         <div className="flex justify-between items-center mb-4 p-4 border-b border-gray-200 dark:border-gray-800">
           <h1 className="text-xl font-bold">Student Dashboard</h1>
           <div className="flex items-center gap-4">
-            <CgpaDisplay />
             <Button variant="outline" size="sm" onClick={handleLogout}>
               Logout
             </Button>
@@ -87,6 +86,9 @@ const StudentDashboard = () => {
               <ScoreAnalysis />
             </div>
             <div className="lg:col-span-1">
+              <div className="mb-6">
+                <CgpaDisplay />
+              </div>
               <OverallPerformance />
             </div>
           </div>
